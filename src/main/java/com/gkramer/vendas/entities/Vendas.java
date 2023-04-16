@@ -2,6 +2,8 @@ package com.gkramer.vendas.entities;
 
 
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 
 @Entity
@@ -20,8 +24,8 @@ public class Vendas {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column 
-	private String data;
+	@Column	
+	private Date data;
 	
 	@Column
 	private double valor;
@@ -44,19 +48,14 @@ public class Vendas {
 	}
 
 
-
-	
-		
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
-
-	
 	public double getValor() {
 		return valor;
 	}

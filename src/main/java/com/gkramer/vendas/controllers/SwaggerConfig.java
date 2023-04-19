@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ComponentScan(basePackages = {"com.gkramer.vendas"})
 @EnableWebMvc
 public class SwaggerConfig{
-
+	
     @Bean    
     public Docket docketSwagger() {
         return new Docket(DocumentationType.SWAGGER_2)

@@ -37,16 +37,19 @@ public class VendedorController {
 	public List<VendedorOutput> findAll(String data1, String data2){
 		try {
 			List<VendedorOutput> saida = new ArrayList<VendedorOutput>();
-			Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(data1);
+			Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(data1); //formatando as datas 
 			Date date2= new SimpleDateFormat("yyyy-MM-dd").parse(data2);
 			
-			long diffInMillies = Math.abs(date2.getTime() - date1.getTime());
-		    Long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-			List<Vendedor> vendedores = repositoriovendedor.findAll();
+			long diffInMillies = Math.abs(date2.getTime() - date1.getTime()); // diferença entra as datas
+		    Long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);// conversão dos milisegundos para dias
+			List<Vendedor> vendedores = repositoriovendedor.findAll(); // tras todos os vendedores
 			for(Vendedor vendedor : vendedores) {
-				Integer count = repositorio.buscarVendasVendedorId(date1, date2, vendedor.getId());
-				double mediaVendas = count.doubleValue() / diff.doubleValue();
-				saida.add(new VendedorOutput(vendedor.getName(), count, mediaVendas));
+				Integer count = repositorio.buscarVendasVendedorId(date1, date2, vendedor.getId()); // pegando as vendas com o id do vendedor no periodo passado como parametro
+				double mediaVendas = 0.0;
+				if(count > 0) {
+					mediaVendas = count.doubleValue() / diff.doubleValue(); // media diaria
+				}
+				saida.add(new VendedorOutput(vendedor.getName(), count, mediaVendas)); //adicionando a saida do vendedor com seu nome, total de vendas e media diaria
 				
 			}
 

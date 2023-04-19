@@ -21,7 +21,7 @@ public interface VendasRepositorio extends JpaRepository<Vendas, Long>{
 			+ "Join ven.vendedor vendedor "
 			+ "Where ven.data between ?1 and ?2 "
 			+ "And vendedor.id = ?3")
-	Integer buscarVendasVendedorId(Date datainicio, Date datafinal, int vendedorid);
+	Integer buscarVendasVendedorId(Date datainicio, Date datafinal, Long vendedorid);
 	
 	
 

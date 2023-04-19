@@ -4,6 +4,8 @@ package com.gkramer.vendas.entities;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +16,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 
 @Entity
@@ -25,13 +30,17 @@ public class Vendas {
 	private int id;
 	
 	@Column	
+	@NotNull(message = "Campo data obrigatório")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	
 	private Date data;
 	
 	@Column
+	@NotNull(message = "Campo valor obrigatório")	
 	private double valor;
 	
 	@ManyToOne
-	@JoinColumn(name = "vendedor_id" )
+	@JoinColumn(name = "vendedor_id")	
 	private Vendedor vendedor;
 	
 
